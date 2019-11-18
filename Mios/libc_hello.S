@@ -9,7 +9,7 @@ main:
 
         push $msg
         call strlen
-        
+
         push %eax
         push $msg
         push $1
