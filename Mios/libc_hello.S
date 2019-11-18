@@ -14,11 +14,12 @@ main:
         push $msg
         push $1
 
+        push $posicion_retorno
         // No declaration needed; asm assumes symbols always exist.
-        call write
+        jmp write
 
 
-
+posicion_retorno:
         push $7
         call _exit
 

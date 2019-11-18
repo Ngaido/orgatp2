@@ -5,24 +5,24 @@
 //
 
 .globl main
-_start:
+main:
 
+        mov %esp,%ebp
+        mov 8(%esp),%edx //guardo en edx argv
         
-
-        push $msg
+        push %edx
         call strlen
-        mov %eax, %edx
+
+
+
+        mov %eax, %edx // %edx == 3rd argument (count)
 
         mov $SYS_write, %eax   // %eax == syscall number
         mov $1, %ebx           // %ebx == first argument (fd)
-        mov $msg, %ecx         // %ecx == second argument (buf)
+        mov 8(%ebp), %ecx         // %ecx == second argument (buf)
 
         int $0x80
 
         mov $SYS_exit, %eax
-        mov $7, %ebx
+        mov %edx, %ebx
         int $0x80
-
-.data
-msg:
-        .ascii "Hello, world!\n"

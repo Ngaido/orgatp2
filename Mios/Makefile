@@ -9,6 +9,8 @@ PROG := $(ASMS:%.S=%)
 PROG += $(ASMS:%.c=%)
 
 all: $(PROG)
+sys_%: sys_%.S
+	$(CC) $(ASFLAGS) $(CPPFLAGS) -nostartfiles $< -o $@
 
 clean:
 	rm -f $(PROG) *.o core

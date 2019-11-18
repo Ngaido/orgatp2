@@ -2,9 +2,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
-//
-// Definir aquÃ­ backtrace().
-//
+void backtrace() {
+    void **ebp = __builtin_frame_address(0);
+    uint32_t *values;
+
+    for (int i=1; ebp[i]; i++) {
+        values =  ebp[i];
+        printf("#%d [%p] %p ( %#x %#x %#x )\n",
+                i, &values[0],&values[1],values[2],values[3],values[4]);
+        ebp = __builtin_frame_address(0);
+    }
+}
 
 void my_write(int fd, const void *msg, size_t count) {
     backtrace();

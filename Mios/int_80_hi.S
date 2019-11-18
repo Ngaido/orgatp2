@@ -12,9 +12,8 @@ main:
         mov $len, %edx         // %edx == third argument (count)
         int $0x80
 
-        mov $SYS_exit, %eax
-        mov $7, %ebx
-        int $0x80
+        mov $7, %eax
+        ret
 
 .data
 msg:
