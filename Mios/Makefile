@@ -11,12 +11,12 @@ PROG += $(ASMS:%.c=%)
 
 
 all: $(PROG)
-sys_%: sys_%.S
-	$(CC) $(ASFLAGS) $(CPPFLAGS) -nostartfiles $< -o $@
+#sys_%: sys_%.S
+#	$(CC) $(ASFLAGS) $(CPPFLAGS) -nostartfiles $< -o $@
 
 clean:
 	rm -f $(PROG) *.o core
 
-hello: hello.c lib_exit.c
+#hello: hello.c lib_exit.c
 
 .PHONY: clean all
