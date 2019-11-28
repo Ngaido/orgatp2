@@ -6,12 +6,19 @@ void backtrace() {
     void **ebp = __builtin_frame_address(0);
     uint32_t *values;
 
-    for (int i=1; ebp[i]; i++) {
-        values =  ebp[i];
+    //for (int i=1; ebp[i]; i++) {
+        int i=1;
+        values =  ebp[0];
         printf("#%d [%p] %p ( %#x %#x %#x )\n",
-                i, &values[0],&values[1],values[2],values[3],values[4]);
-        ebp = __builtin_frame_address(0);
-    }
+                i, ebp[0],ebp[1],values[2],values[3],values[4]);
+        //ebp = __builtin_frame_address(0);
+        i++;
+        ebp=ebp[0];
+        values=ebp[0];
+        printf("#%d [%p] %p ( %#x %#x %#x )\n",
+                i, ebp[0],ebp[1],values[2],values[3],values[4]);
+        
+    //}
 }
 
 void my_write(int fd, const void *msg, size_t count) {

@@ -10,18 +10,18 @@ main:
         mov %esp,%ebp
         
         mov 4(%esp),%ebx //guardo en ebx argc
-        mov $0,%esi //inicializo contador
-        mov 8(%esp),%edx //guardo en edx argv[0]
+        mov $1,%esi //inicializo contador
+        mov 8(%esp),%edi //guardo en edx argv[0]
 
 L1:
         cmp %ebx,%esi
-        jle print
+        jl print
         jmp L2
 
 print:
 
-    mov 4(%edx),%edx //avanzo edx en 4 argv[i++]
-    push %edx
+    mov (%edi,%esi,4),%eax //avanzo edx en 4 argv[i++]                  mov (%edi,%esi,4),%eax = mov (4*%esi) (%rax), %eax
+    push %eax
 
     call puts
 
