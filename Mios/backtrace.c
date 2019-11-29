@@ -6,7 +6,7 @@ void backtrace() {
     void **ebp = __builtin_frame_address(0);
     uint32_t *values;
 
-    for (int i=1; ebp[i]; i++) {
+    for (int i=1; ebp[0]; i++) {
         values = ebp[0];
         printf("#%d [%p] %p ( %#x %#x %#x )\n",
                 i, ebp[0],ebp[1],values[2],values[3],values[4]);
